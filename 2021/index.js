@@ -6,4 +6,4 @@ const day3 = require('./day3/')
 
 console.log(day1(readFile('./day1/input.txt')))
 console.log(day2(readFile('./day2/input.txt')))
-console.log(day3(readFile('./day3/input.txt')))
+console.log(day3(readFile('./day3/test.txt')))

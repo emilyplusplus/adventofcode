@@ -34,6 +34,8 @@ function day3(input) {
   const powerConsumption = gammaRate * epsilonRate
 
   // Part 2 //
+  let counter_mutable = JSON.parse(JSON.stringify(counter))
+
   let oxygenGenRating = 0
   let CO2ScrubberRating = 0
 
@@ -41,10 +43,22 @@ function day3(input) {
 
   let i = 0
   while(ox_arr_workable.length > 1) {
-    let maxBit = (counter[i].one >= counter[i].zero) ? 1 : 0
+    let maxBit = (counter_mutable[i].one >= counter_mutable[i].zero) ? 1 : 0
     ox_arr_workable = ox_arr_workable.filter((bitSequence) => {
       let bits = bitSequence.split('')
       return bits[i] == maxBit
+    })
+    ox_arr_workable.forEach((val, i) => {
+      const bits = val.split('')
+      counter_mutable[i] = {
+        zero: 0,
+        one: 0
+      }
+      //console.log(bits)
+      bits.forEach((bit, j) => {
+        if(parseInt(bit) == 0) counter_mutable[j].zero++
+        else if(parseInt(bit) == 1) counter_mutable[j].one++
+      })
     })
     i++
     //console.log(ox_arr_workable)
@@ -52,19 +66,34 @@ function day3(input) {
 
   //console.log(parseInt(ox_arr_workable[0], 2))
 
+  counter_mutable = JSON.parse(JSON.stringify(counter))
+
   oxygenGenRating = parseInt(ox_arr_workable[0], 2)
 
   let co2_arr_workable = JSON.parse(JSON.stringify(input))
 
   i = 0
   while(co2_arr_workable.length > 1) {
-    let maxBit = (counter[i].zero <= counter[i].one) ? 0 : 1
+    let maxBit = (counter_mutable[i].zero <= counter_mutable[i].one) ? 0 : 1
     co2_arr_workable = co2_arr_workable.filter((bitSequence) => {
       let bits = bitSequence.split('')
       return bits[i] == maxBit
     })
+    co2_arr_workable.forEach((val, i) => {
+      const bits = val.split('')
+      counter_mutable[i] = {
+        zero: 0,
+        one: 0
+      }
+      //console.log(bits)
+      bits.forEach((bit, j) => {
+        if(parseInt(bit) == 0) counter_mutable[j].zero++
+        else if(parseInt(bit) == 1) counter_mutable[j].one++
+      })
+    })
     i++
-    //console.log(co2_arr_workable)
+    console.log(counter_mutable)
+    console.log(co2_arr_workable)
   }
 
   //console.log(parseInt(co2_arr_workable[0], 2))
