@@ -92,8 +92,8 @@ function day3(input) {
       })
     })
     i++
-    console.log(counter_mutable)
-    console.log(co2_arr_workable)
+    //console.log(counter_mutable)
+    //console.log(co2_arr_workable)
   }
 
   //console.log(parseInt(co2_arr_workable[0], 2))
