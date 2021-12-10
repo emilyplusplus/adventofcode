@@ -62,7 +62,7 @@ function day8(input) {
       if(difference(new Set(seq), nineNeg).size == 1) seqDigitMap.set(seq, 9)
     })
 
-    console.log(seqDigitMap)
+    //console.log(seqDigitMap)
   })
 
   return [sumUniqueSegments, sumOutput]
